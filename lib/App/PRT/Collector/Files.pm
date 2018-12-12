@@ -14,7 +14,7 @@ sub collect {
     my ($self) = @_;
 
     for my $file (@{$self->{files}}) {
-        die "$file does not exist" unless -f $file;
+        warn "$file does not exist" unless -f $file;
     }
 
     $self->{files};
