@@ -105,9 +105,8 @@ sub _try_rename_package_statement {
 
     $namespace->set_content($self->destination_class_name);
 
-    # Rename this file when the first significant token is package (heuristic).
-    # This skips comments and POD before the package statement.
-    return $document->schild(0)->DOES('PPI::Statement::Package');
+    # rename this file when the package is within the first few lines (heuristic)
+    return $package->line_number <= 5;
 }
 
 sub _try_rename_includes {
